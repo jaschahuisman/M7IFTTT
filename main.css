@@ -1,0 +1,15 @@
+/* CSS RESET */
+
+* {
+    outline: none;
+    position: relative;
+}
+
+body {
+    margin: 0px;
+    padding: 0px;
+    min-height: 100vh;
+    min-width: 100%;
+}
+
+/* CSS CODE */
