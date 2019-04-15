@@ -15,18 +15,18 @@ CMDJ1M7 – Integrated Smart Systems, Week 1 of IFTTT. An assignment in which we
 **Server Keys (JS):**
 ```javascript
 // storage of arduino value
-var getKey = ZM5hJfzp;
+var getKey = "ZM5hJfzp";
 
 // storage of JS interaction value
-var sendKey = 7JrpHFhd;
+var sendKey = "7JrpHFhd";
 ```
 
 **Server Keys (Arduino):**
 ```C++
 // storage of JS interaction value
-var getKey = 7JrpHFhd;
+char getKey = "7JrpHFhd";
 // storage of arduino value
-var sendKey = ZM5hJfzp;
+char sendKey = "ZM5hJfzp";
 ```
 
 **Sensors:**
