@@ -4,7 +4,7 @@ CMDJ1M7 – Integrated Smart Systems, Week 1 of IFTTT. An assignment in which we
 ### Group Participants
 - Jascha Huisman: 2121951
 - Sam van Dijk:
-- Danyra Boers: 2139852 (@Daenerys97)
+- Danyra Boers: 2139852
 - Eva Boomman:
 - Farid Demnati:
 
