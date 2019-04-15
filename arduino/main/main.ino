@@ -1,5 +1,5 @@
 #include <CMDWifi.h>
-
+// Hoi ik ben eva en ik werk aan de arduino
 CMDWifi wifi;
 
 // configuratie
