@@ -12,13 +12,21 @@ CMDJ1M7 – Integrated Smart Systems, Week 1 of IFTTT. An assignment in which we
 - http://cmd.camp:12345/
 - [Simple Webserver by Hansvana](https://github.com/hansvana/IFTTT-server)
 
-**Server Keys:**
+**Server Keys (JS):**
 ```javascript
 // storage of arduino value
-ZM5hJfzp 
+var getKey = ZM5hJfzp;
 
 // storage of JS interaction value
-7JrpHFhd 
+var sendKey = 7JrpHFhd;
+```
+
+**Server Keys (Arduino):**
+```C++
+// storage of JS interaction value
+var getKey = 7JrpHFhd;
+// storage of arduino value
+var sendKey = ZM5hJfzp;
 ```
 
 **Sensors:**
