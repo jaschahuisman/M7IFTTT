@@ -18,7 +18,7 @@ function getData(getKey) {
             // als de data voeldoet aan de voorwaarden, voer dan onderstaande code uit
 
         } else {
-            // als de data niet voeldoet aan de voorwaarden, voer dan onderstaande code uit
+            // als de data niet voeldoet aan de voorwaarden, voer dan onderstaande code uit yup
 
         };
     });
