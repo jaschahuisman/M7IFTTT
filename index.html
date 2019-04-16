@@ -5,13 +5,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
     <link rel="stylesheet" href="main.css">
     <title>M7IFTTT</title>
 </head>
 
 <body>
+    <div id="settings">
+        <div class="container">
+            <h2>Instellingen</h2>
+            <b>Plant</b>
+            <input type="text" id="plantID" value="ZM5hJfzp">
+            <b>App</b>
+            <input type="text" id="appID" value="7JrpHFhd">
+
+            <button id="save">Opslaan</button>
+            <button id="reset">Reset</button>
+
+        </div>
+    </div>
     <div id="topbar" class="topbar">
-        <img src="img/logo.svg" alt="logo" style="height: 60px; align-self: center;">
+        <img src="img/logo.svg" alt="logo">
+        <a class="menu"><i class="material-icons">menu</i></a>
     </div>
     <div id="plantenstatus" class="plantenstatus">
         <svg viewBox="0 0 36 36" class="circular-chart">

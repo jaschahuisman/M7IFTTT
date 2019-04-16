@@ -4,10 +4,10 @@ var image = document.querySelector('#plantenstatus img');
 var cirkelStatus = document.querySelector("#plantenstatus svg path");
 var menuBurger = document.querySelector('#topbar .menu');
 var settings = document.querySelector('#settings');
-var plantInput = settings.querySelector('#plantID')
-var appInput = settings.querySelector('#appID');
-var saveBtn = settings.querySelector('#save');
-var resetBtn = settings.querySelector('#reset');
+var plantInput = document.querySelector('#plantID')
+var appInput = document.querySelector('#appID');
+var saveBtn = document.querySelector('#save');
+var resetBtn = document.querySelector('#reset');
 
 // configuratie
 var server = "http://www.cmd.camp:12345"; // het adres van de server
