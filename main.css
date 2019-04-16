@@ -87,7 +87,7 @@ body {
 }
 
 .circle.progress {
-    animation: emergency 2s ease-in-out alternate infinite;
+    animation: progress 2s ease-in-out alternate infinite;
 }
 
 @keyframes emergency {
@@ -101,7 +101,7 @@ body {
 
 @keyframes progress {
     0% {
-        /* stroke-dasharray: 0 100; */
+        stroke-dasharray: 0 100;
     }
 }
 
