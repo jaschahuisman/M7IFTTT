@@ -1,6 +1,7 @@
 // html elementen
-var geefWater = document.querySelector ("#geefwater");
-
+var geefWater = document.querySelector("#geefwater");
+var image = document.querySelector('#plantenstatus img');
+var cirkelStatus = document.querySelector("#plantenstatus svg path");
 
 // configuratie
 var server = "http://www.cmd.camp:12345"; // het adres van de server
@@ -8,35 +9,64 @@ var getKey = "ZM5hJfzp"; // de get key om data uit de server te halen
 var sendKey = "7JrpHFhd"; // de send key om data naar de server te sturen
 var frequentie = 2000; // het aantal milliseconden waarop de pagina de data herlaadt
 
-
+// status
+var knopClickStatus = false;
+image.style.opacity = '0';
 
 // de functie om de data te verkrijgen
 function getData() {
-    console.log('De functie getData is gestart', getKey);
+    // console.log('De functie getData is gestart', getKey);
     var oReq = new XMLHttpRequest(); // maak een nieuw request aan
     oReq.addEventListener("load", function () { // als de request is geladen, voer dan deze functie uit
-        var data = this.responseText;
+        var data = parseInt(this.responseText);
+        image.style.opacity = '1';
 
-        console.log(data);
-
-        if (data == "0" ) { // verander de voorwaarden waaraan de data moet voldoen
-            geefWater.addEventListener("click", function (){
-                console.log("DATA IS VERSTUURD DOOR DE KNOP")
-                sendData(1);
-            })
-
-            // enable button geefwater
-
-        } else {
-            // als de data niet voeldoet aan de voorwaarden, voer dan onderstaande code uit yup
-
+        if (data <= 200) { // verander de voorwaarden waaraan de data moet voldoen
+            // Als de ontvangen arduino waarde kleiner is dan 400, activeer de knop
+            if (!knopClickStatus) {
+                geefWater.innerHTML = "Geef me water.";
+                geefWater.classList.remove("disabled");
+                geefWater.setAttribute("onclick", `sendData(1); knopClick()`);
+                cirkelStatus.classList.add("emergency");
+            }
+        } else if (data > 200 && data < 700) {
+            // als de data niet voeldoet aan de voorwaarden, voer dan onderstaande code uit
+            geefWater.innerHTML = "Geef me een beetje water.";
+            geefWater.classList.remove("disabled");
+            cirkelStatus.classList.remove("emergency");
+            if (!knopClickStatus) {
+                geefWater.setAttribute("onclick", `sendData(1); knopClick()`);
+            };
+        } else if (data >= 700) {
+            geefWater.setAttribute("onclick", 'null');
+            geefWater.classList.add("disabled");
+            geefWater.innerHTML = `Vochtigheid = ${data}`;
+            cirkelStatus.classList.remove("emergency");
+            if (knopClickStatus) {
+                knopClickStatus = false;
+            };
         };
+
+        var percentage = data / 10.23;
+        cirkelStatus.setAttribute("stroke-dasharray", `${percentage} 100`);
     });
     oReq.open("GET", `${server}/get/${getKey}`); // definieer het request en de server
     oReq.send(); // verstuur request
 };
 
+function knopClick() {
+    geefWater.classList.add('disabled');
+    cirkelStatus.classList.remove("emergency");
+    geefWater.setAttribute("onclick", 'null');
+    knopClickStatus = true;
+
+    let waitmessage = function () { geefWater.innerHTML = "Water in laten trekken..." }
+    setTimeout(waitmessage, 3000);
+    geefWater.innerHTML = "Water geven...";
+}
+
 function sendData(data) {
+    console.log("Senddata executed")
     var oReq = new XMLHttpRequest(); // maak een nieuw request aan
     oReq.open("GET", `${server}/send/${sendKey}/${data}`); // definieer het request en de server
     oReq.send(); // verstuur request

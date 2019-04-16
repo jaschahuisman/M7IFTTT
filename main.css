@@ -3,6 +3,9 @@
 * {
     outline: none;
     position: relative;
+    font-family: 'Open Sans';
+    font-weight: 900;
+    transition: .3s ease-in-out;
 }
 
 body {
@@ -10,58 +13,109 @@ body {
     padding: 0px;
     min-height: 100vh;
     min-width: 100%;
+}
 
+/* CSS CODE */
+
+body {
     display: grid;
     grid-template-columns: auto 200px auto;
     grid-template-rows: 80px auto 130px;
-
     align-items: center;
     justify-items: center;
- 
-    
 }
 
+/* TOPBAR */
+
 .topbar {
+    border-bottom: 1px solid rgb(236, 236, 236);
     display: flex;
     align-content: center;
     justify-content: center;
     grid-row: 1 / 2;
     grid-column: 1 / 4;
-    background-color: blue;
     width: 100%;
     height: 100%;
 }
 
+/* MID */
+
 .plantenstatus {
-    grid-row: 2 / 3; 
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(232, 240, 240);
+    grid-row: 2 / 3;
     grid-column: 1 / 4;
-    background-color: orange;
     border-radius: 100%;
     height: 300px;
     width: 300px;
-    /* margin-block-start: 25%;
-    margin-left: 14%; */
     text-align: center;
     font-size: 30px;
-    
 }
+
+.plantenstatus img {
+    width: 90%;
+    height: 90%;
+    object-fit: cover;
+    border-radius: 100%;
+}
+
+.circular-chart {
+    position: absolute;
+    display: block;
+    height: 107.5%;
+}
+
+.circle {
+    stroke: rgb(113, 219, 219);
+    stroke-width: 1.6;
+    fill: none;
+    stroke-linecap: round;
+    animation: progress 1s ease-in-out forwards;
+}
+
+.circle.emergency {
+    animation: emergency 2s ease-in-out alternate infinite;
+}
+
+@keyframes emergency {
+    0% {
+        stroke: #ff5b5b;
+    }
+    100% {
+        stroke: #f8994b;
+    }
+}
+
+@keyframes progress {
+    0% {
+        /* stroke-dasharray: 0 100; */
+    }
+}
+
+/* END */
 
 .buttoncontainer {
-    grid-row: 3/4; 
+    grid-row: 3/4;
     grid-column: 1/4;
-    background-color: red;
-    width: 150px;
-    height:40px;
-    border: 20px;
-    padding: 20px;
-    align-items: center;
     text-align: center;
     font-size: 30px;
-    border-radius: 5px;
 }
 
-
+.buttoncontainer button#geefwater {
+    font-size: 18px;
+    border: none;
+    background-color: rgb(89, 180, 255);
+    color: white;
+    padding: 20px 30px;
+    border-radius: 100px;
 }
 
+.buttoncontainer button#geefwater.disabled {
+    background-color: rgb(212, 212, 212);
+    color: rgb(150, 150, 150);
+}
 
 /* CSS CODE */
