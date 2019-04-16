@@ -1,4 +1,5 @@
 // html elementen
+var geefWater = document.querySelector ("#geefwater");
 
 
 // configuratie
@@ -6,6 +7,7 @@ var server = "http://www.cmd.camp:12345"; // het adres van de server
 var getKey = "ZM5hJfzp"; // de get key om data uit de server te halen
 var sendKey = "7JrpHFhd"; // de send key om data naar de server te sturen
 var frequentie = 2000; // het aantal milliseconden waarop de pagina de data herlaadt
+
 
 
 // de functie om de data te verkrijgen
@@ -17,8 +19,13 @@ function getData() {
 
         console.log(data);
 
-        if (data) { // verander de voorwaarden waaraan de data moet voldoen
-            // als de data voeldoet aan de voorwaarden, voer dan onderstaande code uit
+        if (data == "0" ) { // verander de voorwaarden waaraan de data moet voldoen
+            geefWater.addEventListener("click", function (){
+                console.log("DATA IS VERSTUURD DOOR DE KNOP")
+                sendData(1);
+            })
+
+            // enable button geefwater
 
         } else {
             // als de data niet voeldoet aan de voorwaarden, voer dan onderstaande code uit yup
