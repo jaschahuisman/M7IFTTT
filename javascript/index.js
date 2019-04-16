@@ -31,10 +31,10 @@ function getData() {
             }
         } else if (data > 200 && data < 700) {
             // als de data niet voeldoet aan de voorwaarden, voer dan onderstaande code uit
-            geefWater.innerHTML = "Geef me een beetje water.";
-            geefWater.classList.remove("disabled");
             cirkelStatus.classList.remove("emergency");
             if (!knopClickStatus) {
+                geefWater.innerHTML = "Geef me een beetje water.";
+                geefWater.classList.remove("disabled");
                 geefWater.setAttribute("onclick", `sendData(1); knopClick()`);
             };
         } else if (data >= 700) {
@@ -42,6 +42,7 @@ function getData() {
             geefWater.classList.add("disabled");
             geefWater.innerHTML = `Vochtigheid = ${data}`;
             cirkelStatus.classList.remove("emergency");
+            cirkelStatus.classList.remove("progress");
             if (knopClickStatus) {
                 knopClickStatus = false;
             };
@@ -57,6 +58,7 @@ function getData() {
 function knopClick() {
     geefWater.classList.add('disabled');
     cirkelStatus.classList.remove("emergency");
+    cirkelStatus.classList.add("progress");
     geefWater.setAttribute("onclick", 'null');
     knopClickStatus = true;
 
