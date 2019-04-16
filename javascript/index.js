@@ -2,14 +2,6 @@
 var geefWater = document.querySelector("#geefwater");
 var image = document.querySelector('#plantenstatus img');
 var cirkelStatus = document.querySelector("#plantenstatus svg path");
-var menuBurger = document.querySelector('#topbar .menu');
-var settings = document.querySelector('#settings');
-var plantInput = settings.querySelector('#plantID')
-var appInput = settings.querySelector('#appID');
-var saveBtn = settings.querySelector('#save');
-var resetBtn = settings.querySelector('#reset');
-
-console.log(menuBurger);
 
 // configuratie
 var server = "http://www.cmd.camp:12345"; // het adres van de server
@@ -20,24 +12,6 @@ var frequentie = 2000; // het aantal milliseconden waarop de pagina de data herl
 // status
 var knopClickStatus = false;
 image.style.opacity = '0';
-
-// settings toggle 
-menuBurger.addEventListener('click', function(){
-    settings.classList.toggle('active');
-});
-
-saveBtn.addEventListener('click', function(){
-    if (plantInput.value && appInput.value){
-        getKey = plantInput.value;
-        sendKey = appInput.value;
-        settings.classList.remove('active');
-    };
-});
-
-resetBtn.addEventListener('click', function(){
-    console.log("EE")
-    location.reload();
-});
 
 // de functie om de data te verkrijgen
 function getData() {
