@@ -33,6 +33,7 @@ char sendKey = "ZM5hJfzp";
 - [Water sensor](https://www.conrad.nl/p/makerfactory-bodemvochtigheidssensor-waterpeilsensor-compatibel-met-arduino-1612748?WT.mc_id=gshop&gclid=Cj0KCQjw19DlBRCSARIsAOnfRejM5JHYSgU7_YsxXjOOKBR5DPozM7WRAEF1YlueQUJEYXWwpLQNxhUaAheGEALw_wcB&tid=958856870_59564775006_pla-633211926146_pla-1612748&WT.srch=1&vat=true&insert_kz=8J)
 
 **Actuator:**
+- [Servo](https://www.arduino.cc/en/reference/servo)
 
 **Fritzing:**
 
