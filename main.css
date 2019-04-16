@@ -101,7 +101,7 @@ body {
 
 @keyframes progress {
     0% {
-        stroke-dasharray: 0 100;
+        stroke-dasharray: 5 0;
     }
 }
 
