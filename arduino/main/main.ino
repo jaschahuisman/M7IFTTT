@@ -1,20 +1,23 @@
 #include <CMDWifi.h>
-// Hoi ik ben eva en ik werk aan de arduino
+#include <Servo.h> 
+
+Servo motor1;
 CMDWifi wifi;
 
-// configuratie
-char ssid[] = "AvansWlan"; // je netwerk SSID (naam)
-char pass[] = ""; // je netwerk wachtwoord, laat leeg "" als er geen wachtwoord is
-char server[] = "cmd.camp"; // het url van de webserver 
-int port = 12345; // de poort van de webserver
-char sendKey[] = "xxxxx"; // de key waar je data naar stuurt
-char getKey[] = "xxxxx"; // de key waar je data vandaan haalt
-int actuator = 3; // de output pin naar je actuator
+// CHANGE THESE SETTINGS
+char ssid[] = "AvansWlan"; // your network SSID (name)
+char pass[] = ""; // your network password, leave empty "" for no password
+char server[] = "cmd.camp"; // the url of the webserver to connect to
+int port = 12345; // the port on the webserver (80 is default)
+char sendKey[] = "ZM5hJfzp"; // the key you will change on the server
+char getKey[] = "7JrpHFhd"; // the key you want to read from the server
 
 void setup() {
-  // maak verbinding met de wifi
-  pinMode(actuator, OUTPUT);
-  // maak verbinding met de wifi
+  // Don't forget to set OUTPUT or INPUT on the right ports
+  pinMode(3, OUTPUT);
+  motor1.attach(6);
+
+  // initialize the connection to the server
   wifi.connect(ssid, pass, server, port);
 }
 
@@ -22,24 +25,34 @@ void loop() {
   // read the input on analog pin 0:
   int sensorValue = analogRead(A0);
 
-  // maak verbinding, stuur sensorwaarde naar sendKey en lees getKey data uit
+  // connect to the server, send the sensorValue to the sendKey
+  // and read from the getKey. Here be magic.
   int response = wifi.sendGet(sendKey, sensorValue, getKey);
 
-  // doe iets met de ontvangen data
-//  if (response >= 0) {
-//    // doe niks
-//    Serial.print("Sensor (send): ");
-//    Serial.print(sensorValue);
-//    Serial.print("\tOntvangen (get): ");
-//    Serial.println(response);
-//
-//    if (response == 1) {
-//      digitalWrite(actuator, HIGH);
-//    } else {
-//      digitalWrite(actuator, LOW);
-//    }
-//  }
+  // only do this part if the response is a real number
+  if (response >= 0) {
+    // print the response (for debugging purposes only)
+    Serial.print("Sensor (send): ");
+    Serial.print(sensorValue);
+    Serial.print("\tOntvangen (get): ");
+    Serial.println(response);
 
-  // eventjes wachten ivm overbelasting
+    // do something with response
+    if (response ==1) {
+  motor1.write(180);
+   delay (300);
+     motor1.write(0);
+   delay (300);
+     motor1.write(90);
+
+
+       return;
+       
+    } else {
+  motor1.write(90);
+    }
+  }
+
+  // wait for a short time
   delay(100);
 }

@@ -16,7 +16,7 @@ var sendKey = "7JrpHFhd"; // de send key om data naar de server te sturen
 var frequentie = 1000; // het aantal milliseconden waarop de pagina de data herlaadt
 
 // status
-var knopClickStatus = false;
+var knopClickStatus = false; // boolean
 image.style.opacity = '0';
 
 // settings toggle 
@@ -24,6 +24,7 @@ menuBurger.addEventListener('click', function(){
     settings.classList.toggle('active');
 });
 
+// sla de nieuwe settings op
 saveBtn.addEventListener('click', function(){
     if (plantInput.value && appInput.value){
         getKey = plantInput.value;
@@ -32,6 +33,7 @@ saveBtn.addEventListener('click', function(){
     };
 });
 
+// reset alle instellingen naar standaard
 resetBtn.addEventListener('click', function(){
     console.log("EE")
     location.reload();
@@ -46,23 +48,24 @@ function getData() {
         console.log(data);
         image.style.opacity = '1';
 
-        if (data <= 50) { // verander de voorwaarden waaraan de data moet voldoen
-            // Als de ontvangen arduino waarde kleiner is dan 400, activeer de knop
+        if (data <= 50) {
+            // als de ontvangen arduino waarde kleiner is dan 50, activeer de knop
             if (!knopClickStatus) {
                 geefWater.innerHTML = "Geef me water.";
                 geefWater.classList.remove("disabled");
                 geefWater.setAttribute("onclick", `sendData(1); knopClick()`);
                 cirkelStatus.classList.add("emergency");
             }
-        } else if (data < 300 && data > 30) {
-            // als de data niet voeldoet aan de voorwaarden, voer dan onderstaande code uit
+        } else if (data > 50 && data < 300) {
+            // als de ontvangen arduino waarde tussen de 50 en de 300 is, activeer de knop
             cirkelStatus.classList.remove("emergency");
             if (!knopClickStatus) {
                 geefWater.innerHTML = "Geef me een beetje water.";
                 geefWater.classList.remove("disabled");
                 geefWater.setAttribute("onclick", `sendData(1); knopClick()`);
             };
-        } else if (data >= 100) {
+        } else if (data >= 300) {
+            // als de ontvangen arduino waarde groter is dan 300, activeer de knop
             geefWater.setAttribute("onclick", 'null');
             geefWater.classList.add("disabled");
             geefWater.innerHTML = `Vochtigheid = ${data}`;
@@ -73,6 +76,7 @@ function getData() {
             };
         };
 
+        // updaten van de percentagecirkel
         var percentage = (data / 6);
         cirkelStatus.setAttribute("stroke-dasharray", `${percentage} 100`);
     });
